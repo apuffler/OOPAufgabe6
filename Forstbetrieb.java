@@ -62,9 +62,9 @@ public class Forstbetrieb{
             currentNode = currentNode.getNext();
         }   
 
-        allBetriebsstunden /= ernter.size();
-        schnitzelBetriebsstunden /= schnitzelCounter;
-        schneidBetriebsstunden /= schneidCounter;
+        allBetriebsstunden = (ernter.size() <= 0)?0:(allBetriebsstunden/ernter.size());
+        schnitzelBetriebsstunden = (schnitzelCounter <= 0)?0:(schnitzelBetriebsstunden / schnitzelCounter);
+        schneidBetriebsstunden = (schneidCounter <= 0)?0:(schneidBetriebsstunden / schneidCounter);
 
         return new SchnitzelSchneidTriple(allBetriebsstunden, schnitzelBetriebsstunden, schneidBetriebsstunden);
     }
@@ -93,9 +93,9 @@ public class Forstbetrieb{
             currentNode = currentNode.getNext();
         }   
 
-        allBetriebsstunden /= ernter.size();
-        schreiterBetriebsstunden /= schreiterCounter;
-        radBetriebsstunden /= radCounter;
+        allBetriebsstunden = (ernter.size() <= 0)?0:(allBetriebsstunden / ernter.size());
+        schreiterBetriebsstunden = (schreiterCounter <= 0)?0:(schreiterBetriebsstunden / schreiterCounter);
+        radBetriebsstunden = (radCounter <= 0)?0:(radBetriebsstunden / radCounter);
 
         return new SchrittRadTriple(allBetriebsstunden, schreiterBetriebsstunden, radBetriebsstunden);
     }
@@ -126,9 +126,9 @@ public class Forstbetrieb{
 
             currentNode = currentNode.getNext();
         }
-        totalDistance /= radernterCounter;
-        schnitzelDistance /= schnitzelCounter;
-        schneideDistance /= schneidCounter;
+        totalDistance = (radernterCounter <= 0)?0:(totalDistance / radernterCounter);
+        schnitzelDistance = (schnitzelCounter <= 0)?0:(schnitzelDistance / schnitzelCounter);
+        schneideDistance = (schneidCounter <= 0)?0:(schneideDistance / schneidCounter);
 
         return new SchnitzelSchneidTriple(totalDistance, schnitzelDistance, schneideDistance);
     }
@@ -159,9 +159,9 @@ public class Forstbetrieb{
 
             currentNode = currentNode.getNext();
         }
-        totalSteps /= schreiterCounter;
-        schnitzelSteps /= schnitzelCounter;
-        schneideSteps /= schneidCounter;
+        totalSteps = (schreiterCounter <= 0)?0:(totalSteps / schreiterCounter);
+        schnitzelSteps = (schnitzelCounter <= 0)?0:(schnitzelSteps / schnitzelCounter);
+        schneideSteps = (schneidCounter <= 0)?0:(schneideSteps / schneidCounter);
 
         return new SchnitzelSchneidTriple(totalSteps, schnitzelSteps, schneideSteps);
     }
@@ -193,9 +193,9 @@ public class Forstbetrieb{
 
             currentNode = currentNode.getNext();
         }
-        totalThickness /= schnitzelCounter;
-        schreitThickness /= schreitCounter;
-        radThickness /= radCounter;
+        totalThickness = (schnitzelCounter <= 0)?0:(totalThickness / schnitzelCounter);
+        schreitThickness = (schreitCounter <= 0)?0:(schreitThickness / schreitCounter);
+        radThickness = (radCounter <= 0)?0:(radThickness / radCounter);
         return new SchrittRadTriple(totalThickness, schreitThickness, radThickness);
     }
     
@@ -226,13 +226,13 @@ public class Forstbetrieb{
 
             currentNode = currentNode.getNext();
         }
-        totalThickness /= schneidCounter;
-        schreitThickness /= schreitCounter;
-        radThickness /= radCounter;
+        totalThickness = (schneidCounter <= 0)?0:(totalThickness / schneidCounter);
+        schreitThickness = (schreitCounter <= 0)?0:(schreitThickness / schreitCounter);
+        radThickness = (radCounter <= 0)?0:(radThickness / radCounter);
         return new SchrittRadTriple(totalThickness, schreitThickness, radThickness);
     }
-/*
-    public String getBetriebsstundenEinsatz(){
+
+/*    public String getBetriebsstundenEinsatz(){
         double sumschneiden = 0, sumschnitzeln = 0, anzschneiden = 0, anzshnitzln = 0;
         Node n = this.ernter.head;
         while (n != null){
