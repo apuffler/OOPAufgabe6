@@ -1,5 +1,5 @@
 
-public abstract class Holzvollernter extends Node{
+public abstract class Holzvollernter{
 
     private static int num = 0;
     public int id;
@@ -13,6 +13,10 @@ public abstract class Holzvollernter extends Node{
         this.aKopf = arbeitskopf;
     }
 
+    public int getID(){
+    	return this.id;
+    }
+    
     public int getBetriebsstunden(){
         return this.betriebsstunden;
     }
