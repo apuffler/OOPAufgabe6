@@ -1,30 +1,58 @@
 
 public class MyList {
 
-    public Node head;
-    public Node tail;
+    private Node head;
+    private Node tail;
+    int size;
 
     public MyList(){
         this.head = null;
         this.tail = null;
+        this.size = 0;
     }
 
-    public MyList(Node n){
-        this.head = n;
-        this.tail = n;
+    public Node getHead(){
+    	return this.head;
     }
 
-    public void add (Node n){
+    public void add (Object n){
+    	if(n == null)
+    		return;
         if(this.head == null){
-            this.head = n;
-            this.tail = n;
-        }else{
-            // todo: check for datatype: Holzvollertner oder Forstbetrieb
-            if((this.head instanceof Holzvollernter && n instanceof Forstbetrieb) || (this.head instanceof Forstbetrieb && n instanceof Holzvollernter)){
-                throw new IllegalArgumentException("Holzvollernter und Forstbetriebe duerfen nicht in die selbe Liste eingetragen werden");
-            }
-            this.tail.next = n;
-            this.tail = this.tail.next;
+            this.head = new Node(n);
+            this.tail = new Node(n);
+        }else{	
+            this.tail.setNext(new Node(n));
+            this.tail = this.tail.getNext();
         }
+        this.size++;
+    }
+
+    public void remove(Object n){
+    	if(this.head.getElement() == n){
+    		if(this.head == null){
+    			return;
+    		}else{
+    			this.head = this.head.getNext();
+    		}
+    	}
+
+    	Node previousNode = null;
+    	Node currentNode = this.head;
+
+    	while(currentNode != null){
+    		if(currentNode.getElement() == n){
+    			previousNode.setNext(currentNode.getNext());
+    			this.size--;
+    			break;
+    		}
+
+    		previousNode = currentNode;
+    		currentNode = currentNode.getNext();
+    	}
+    }
+
+    public int size(){
+    	return this.size;
     }
 }
