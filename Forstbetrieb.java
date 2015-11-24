@@ -1,8 +1,8 @@
 
-public class Forstbetrieb extends Node{
+public class Forstbetrieb{
 
     public final String fName;
-    public MyList ernter;
+    private MyList ernter;
 
     public Forstbetrieb(String name){
         this.fName = name;
@@ -13,10 +13,160 @@ public class Forstbetrieb extends Node{
         this.ernter.add(hve);
     }
 
-    public void removeErnter(Holzvollernter hve){
-        // todo: how to do this best?
+    public void removeErnter(int id){
+        Holzvollernter toBeRemoved = this.getErnter(id);
+        ernter.remove(toBeRemoved);
     }
 
+    public Holzvollernter getErnter(int id){
+    	Node currentNode = ernter.getHead();
+    	while(currentNode != null){
+    		Holzvollernter element = (Holzvollernter)currentNode.getElement();
+    		if(element.getID() == id){
+    			return element;
+    		}
+    		currentNode = currentNode.getNext();
+    	}
+    	return null;
+    }
+
+    public String getName(){
+    	return this.fName;
+    }
+
+    public MyList getErnterList(){
+        return this.ernter;
+    }
+
+    public AverageBetriebsstundenByKopf getAverageBetriebsStundenByKopf(){
+        int schnitzelCounter = 0;
+        int schneidCounter = 0;
+
+        float schnitzelBetriebsstunden = 0;
+        float schneidBetriebsstunden = 0;
+        float allBetriebsstunden = 0;
+
+        Node currentNode = ernter.getHead();
+        while(currentNode != null){
+            Holzvollernter h = (Holzvollernter)currentNode.getElement();
+
+            if(h.getArbeitskopf() instanceof Schneidkopf){
+                schneidCounter++;
+                schneidBetriebsstunden += h.getBetriebsstunden();
+            }else if(h.getArbeitskopf() instanceof Schnitzelkopf){
+                schnitzelCounter++;
+                schnitzelBetriebsstunden += h.getBetriebsstunden();
+            }
+
+            allBetriebsstunden += h.getBetriebsstunden();
+            currentNode = currentNode.getNext();
+        }   
+
+        allBetriebsstunden /= ernter.size();
+        schnitzelBetriebsstunden /= schnitzelCounter;
+        schneidBetriebsstunden /= schneidCounter;
+
+        return new AverageBetriebsstundenByKopf(allBetriebsstunden, schneidBetriebsstunden, schnitzelBetriebsstunden);
+    }
+
+    public AverageBetriebsstundenByArt getAverageBetriebsStundenByArt(){
+        int schreiterCounter = 0;
+        int radCounter = 0;
+
+        float schreiterBetriebsstunden = 0;
+        float radBetriebsstunden = 0;
+        float allBetriebsstunden = 0;
+
+        Node currentNode = ernter.getHead();
+        while(currentNode != null){
+            Holzvollernter h = (Holzvollernter)currentNode.getElement();
+
+            if(h instanceof Radernter){
+                radCounter++;
+                radBetriebsstunden += h.getBetriebsstunden();
+            }else if(h instanceof Schreiter){
+                schreiterCounter++;
+                schreiterBetriebsstunden += h.getBetriebsstunden();
+            }
+
+            allBetriebsstunden += h.getBetriebsstunden();
+            currentNode = currentNode.getNext();
+        }   
+
+        allBetriebsstunden /= ernter.size();
+        schreiterBetriebsstunden /= schreiterCounter;
+        radBetriebsstunden /= radCounter;
+
+        return new AverageBetriebsstundenByArt(allBetriebsstunden, schreiterBetriebsstunden, radBetriebsstunden);
+    }
+
+    public AverageSpentDistanceByKopf getAverageSpentDistanceByKopf(){
+        int schnitzelCounter = 0;
+        int schneidCounter = 0;
+        int radernterCounter = 0;
+
+        float schnitzelDistance = 0;
+        float schneideDistance = 0;
+        float totalDistance = 0;
+
+        Node currentNode = ernter.getHead();
+        while(currentNode != null){
+            if(currentNode.getElement() instanceof Radernter){
+                Radernter r = (Radernter)currentNode.getElement();
+                radernterCounter++;
+                totalDistance += r.getWegstrecke();
+                if(r.getArbeitskopf() instanceof Schnitzelkopf){
+                    schnitzelCounter++;
+                    schnitzelDistance += r.getWegstrecke();
+                }else if(r.getArbeitskopf() instanceof Schneidkopf){
+                    schneidCounter++;
+                    schneideDistance += r.getWegstrecke();
+                }
+            }
+
+            currentNode = currentNode.getNext();
+        }
+        totalDistance /= radernterCounter;
+        schnitzelDistance /= schnitzelCounter;
+        schneideDistance /= schneidCounter;
+
+        return new AverageSpentDistanceByKopf(totalDistance, schneideDistance, schnitzelDistance);
+    }
+
+    public AverageStepsByKopf getAverageStepsByKopf(){
+        int schnitzelCounter = 0;
+        int schneidCounter = 0;
+        int schreiterCounter = 0;
+
+        float schnitzelSteps = 0;
+        float schneideSteps = 0;
+        float totalSteps = 0;
+
+        Node currentNode = ernter.getHead();
+        while(currentNode != null){
+            if(currentNode.getElement() instanceof Schreiter){
+                Schreiter s = (Schreiter)currentNode.getElement();
+                schreiterCounter++;
+                totalSteps += s.getSchritte();
+                if(s.getArbeitskopf() instanceof Schnitzelkopf){
+                    schnitzelCounter++;
+                    schnitzelSteps += s.getSchritte();
+                }else if(s.getArbeitskopf() instanceof Schneidkopf){
+                    schneidCounter++;
+                    schneideSteps += s.getSchritte();
+                }
+            }
+
+            currentNode = currentNode.getNext();
+        }
+        totalSteps /= schreiterCounter;
+        schnitzelSteps /= schnitzelCounter;
+        schneideSteps /= schneidCounter;
+
+        return new AverageStepsByKopf(totalSteps, schneideSteps, schnitzelSteps);
+    }
+
+/*
     public String getBetriebsstundenEinsatz(){
         double sumschneiden = 0, sumschnitzeln = 0, anzschneiden = 0, anzshnitzln = 0;
         Node n = this.ernter.head;
@@ -25,6 +175,7 @@ public class Forstbetrieb extends Node{
                 if(((Holzvollernter) n).getArbeitskopf() instanceof Schneiden){
                     sumschneiden += ((Holzvollernter) n).getBetriebsstunden();
                     anzschneiden++;
+ 
                 }else if(((Holzvollernter) n).getArbeitskopf() instanceof Schnitzeln){
                     sumschnitzeln += ((Holzvollernter) n).getBetriebsstunden();
                     anzshnitzln++;
@@ -130,5 +281,5 @@ public class Forstbetrieb extends Node{
         }
         return "Durchschnittliche Baumdicke der Schnitzler:\nGesamt: " + ((sums+sumr)/(anzs+anzr)) + "\nSchreiter: " + (sums/anzs)
                 + "\nRadernter: " + (sumr/anzr);
-    }
+    }*/
 }
