@@ -1,6 +1,6 @@
 /**
  *Arbeitsaufteilung: 
- *  Stefan Buttenhauser: 
+ *  Stefan Buttenhauser: Arbeitskopf.java, Forstbetrieb.java, Gemeinde.java, Holzvollernter.java, Radernter.java, Schreiter.java, Schneidkopf.java, Schnitzelkopf.java
  *  Armin Puffler: Assertions für alle Klassen, Klassendiagramm (mit Hilfe der Kollegen), general Help
  *  Jovan Zivanovic: DoubleTriple.java, Test.java, SchnitzelSchneidTriple.java, SchrittRadTriple.java, MyList.java, Node.java
  *
