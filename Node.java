@@ -7,10 +7,10 @@ public class Node {
     //ASSERT: Object element und Node next dürfen nicht NULL sein!
     public Node(Object element, Node next){
     	if (element == null)
-			throw new IllegalArgumentException("MyList, remove: Object n darf nicht NULL sein!");
+			throw new IllegalArgumentException("Node, remove: Object n darf nicht NULL sein!");
 
 		if (next == null)
-			throw new IllegalArgumentException("MyList, remove: Object n darf nicht NULL sein!");
+			throw new IllegalArgumentException("Node, remove: Object n darf nicht NULL sein!");
 
     	this.element = element;
     	this.next = next;
@@ -18,7 +18,7 @@ public class Node {
     //ASSERT: Object element darf nicht NULL sein!
     public Node(Object element){
     	if (element == null)
-			throw new IllegalArgumentException("MyList, remove: Object n darf nicht NULL sein!");
+			throw new IllegalArgumentException("Node, remove: Object n darf nicht NULL sein!");
 
     	this.element = element;
     	this.next = null;
@@ -39,9 +39,10 @@ public class Node {
     //ASSERT: Node next darf nicht null sein!
     public void setNext(Node next){
 
+    	/*
     	if (next == null)
-			throw new IllegalArgumentException("MyList, remove: Object n darf nicht NULL sein!");
-
+			throw new IllegalArgumentException("Node, remove: Object n darf nicht NULL sein!");
+		*/
     	this.next = next;
     }
 }

@@ -93,12 +93,18 @@ public class Test {
         Node currentNode = l.getHead();
         while(currentNode != null){
             Forstbetrieb cur = (Forstbetrieb)currentNode.getElement();
-            System.out.println("Forstbetrieb: " + cur.getName());
+            
             currentNode = currentNode.getNext();
         }
 
         gemeinde2.removeForstBetrieb("Cestin Hacker");
-        System.out.println("Die Gemeinde Cestin hat nun vier Forstbetriebe, doch einer davon wird nicht verwendet und daher gelöscht");
+        System.out.println("Die Gemeinde Cestin hat nun 4 Forstbetriebe, doch einer davon wird nicht verwendet und daher gelöscht");
+
+
+        System.out.println("Gemeinden --> " + gemeinde2.toString());
+
+
+
 
         currentNode = l.getHead();
         while(currentNode != null){
@@ -108,6 +114,9 @@ public class Test {
         }
 
         //Löschen aller Betriebe in Gemeinde2
+        System.out.println("Gemeinde Cestin hat " + gemeinde2.getForstbetriebCount() + " Forstbetriebe");
+        System.out.println("Die Gemeinde Cestin sollte nun 3 Forstbetriebe haben, alle werden testweise gelöscht");
+
         gemeinde2.removeForstBetrieb("Cestin Töchter");
         gemeinde2.removeForstBetrieb("Cestin Brüder");
         gemeinde2.removeForstBetrieb("Cestin Dummköpfe");

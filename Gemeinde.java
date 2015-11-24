@@ -30,6 +30,7 @@ public class Gemeinde {
     	if (name == null)
 			throw new IllegalArgumentException("Gemeinde, removeForstBetrieb: String name darf nicht NULL sein!");
         Forstbetrieb toBeRemoved = this.getForstBetrieb(name);
+        System.out.println(toBeRemoved);
         forstbetrieb.remove(toBeRemoved);
     }
     //ASSERT: String name darf nicht NULL sein!
@@ -47,9 +48,39 @@ public class Gemeinde {
     	return null;
     }
 
-    //TODO!
+    
     public String toString(){
-        return "";
+
+    	Node n = this.forstbetrieb.getHead();
+    	if (n == null)
+    		return "";
+
+    	String gemeinde_desc = "";
+
+    	//Forstbetrieb formatting
+    	while(n.hasNext())
+    	{
+    		
+    		Forstbetrieb f = (Forstbetrieb)  n.getElement();
+    		gemeinde_desc += f.getName() + ":[";
+
+    		//Ernter for Forstbetrieb formatting
+    		MyList el = f.getErnterList();
+    		Node ne = el.getHead();
+
+    		while(ne.hasNext())
+    		{
+    			
+    			Holzvollernter ernter = (Holzvollernter) ne.getElement();
+    			gemeinde_desc += ernter.getID() +",";
+    			ne = ne.getNext();
+    		}
+    		gemeinde_desc += "]\n";
+
+    		n = n.getNext();
+    	}
+
+        return gemeinde_desc;
     }
 
     public int getForstbetriebCount(){

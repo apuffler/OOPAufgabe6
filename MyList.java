@@ -35,8 +35,11 @@ public class MyList {
     
     //ASSERT: Object n darf nicht NULL sein!
     public void remove(Object n){
+    	
     	if (n == null)
 			throw new IllegalArgumentException("MyList, remove: Object n darf nicht NULL sein!");
+		
+
 
     	if(this.head.getElement() == n){
     		if(this.head == null){
