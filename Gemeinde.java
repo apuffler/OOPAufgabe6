@@ -9,6 +9,10 @@ public class Gemeinde {
         this.forstbetrieb = new MyList();
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     public void addForstbetrieb(Forstbetrieb fb){
         this.forstbetrieb.add(fb);
     }
@@ -32,5 +36,9 @@ public class Gemeinde {
 
     public String toString(){
         return "";
+    }
+
+    public int getForstbetriebCount(){
+        return this.forstbetrieb.size();
     }
 }

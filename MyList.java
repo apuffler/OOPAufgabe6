@@ -20,7 +20,7 @@ public class MyList {
     		return;
         if(this.head == null){
             this.head = new Node(n);
-            this.tail = new Node(n);
+            this.tail = this.head;
         }else{	
             this.tail.setNext(new Node(n));
             this.tail = this.tail.getNext();
@@ -33,6 +33,7 @@ public class MyList {
     		if(this.head == null){
     			return;
     		}else{
+                this.size--;
     			this.head = this.head.getNext();
     		}
     	}
