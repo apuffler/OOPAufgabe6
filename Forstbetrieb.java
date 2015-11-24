@@ -52,11 +52,12 @@ public class Forstbetrieb{
         int schnitzelCounter = 0;
         int schneidCounter = 0;
 
-        float schnitzelBetriebsstunden = 0;
-        float schneidBetriebsstunden = 0;
-        float allBetriebsstunden = 0;
+        double schnitzelBetriebsstunden = 0;
+        double schneidBetriebsstunden = 0;
+        double allBetriebsstunden = 0;
 
         Node currentNode = ernter.getHead();
+        
         while(currentNode != null){
             Holzvollernter h = (Holzvollernter)currentNode.getElement();
 
@@ -83,9 +84,9 @@ public class Forstbetrieb{
         int schreiterCounter = 0;
         int radCounter = 0;
 
-        float schreiterBetriebsstunden = 0;
-        float radBetriebsstunden = 0;
-        float allBetriebsstunden = 0;
+        double schreiterBetriebsstunden = 0;
+        double radBetriebsstunden = 0;
+        double allBetriebsstunden = 0;
 
         Node currentNode = ernter.getHead();
         while(currentNode != null){
@@ -115,9 +116,9 @@ public class Forstbetrieb{
         int schneidCounter = 0;
         int radernterCounter = 0;
 
-        float schnitzelDistance = 0;
-        float schneideDistance = 0;
-        float totalDistance = 0;
+        double schnitzelDistance = 0;
+        double schneideDistance = 0;
+        double totalDistance = 0;
 
         Node currentNode = ernter.getHead();
         while(currentNode != null){
@@ -148,9 +149,9 @@ public class Forstbetrieb{
         int schneidCounter = 0;
         int schreiterCounter = 0;
 
-        float schnitzelSteps = 0;
-        float schneideSteps = 0;
-        float totalSteps = 0;
+        double schnitzelSteps = 0;
+        double schneideSteps = 0;
+        double totalSteps = 0;
 
         Node currentNode = ernter.getHead();
         while(currentNode != null){
@@ -181,9 +182,9 @@ public class Forstbetrieb{
         int radCounter = 0;
         int schreitCounter = 0;
 
-        float totalThickness = 0;
-        float radThickness = 0;
-        float schreitThickness = 0;
+        double totalThickness = 0;
+        double radThickness = 0;
+        double schreitThickness = 0;
 
         Node currentNode = ernter.getHead();
         while(currentNode != null){
@@ -214,15 +215,15 @@ public class Forstbetrieb{
         int radCounter = 0;
         int schreitCounter = 0;
 
-        float totalThickness = 0;
-        float radThickness = 0;
-        float schreitThickness = 0;
+        double totalThickness = 0;
+        double radThickness = 0;
+        double schreitThickness = 0;
 
         Node currentNode = ernter.getHead();
         while(currentNode != null){
             Holzvollernter h = (Holzvollernter)currentNode.getElement();
             if(h.getArbeitskopf() instanceof Schneidkopf){
-                Schreiter s = (Schreiter)currentNode.getElement();
+                Holzvollernter s = (Holzvollernter)currentNode.getElement();
                 schneidCounter++;
                 totalThickness += h.getArbeitskopfDetails();
                 if(currentNode.getElement() instanceof Schreiter){

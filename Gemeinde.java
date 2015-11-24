@@ -13,7 +13,12 @@ public class Gemeinde {
         this.name = name;
         this.forstbetrieb = new MyList();
     }
-    //ASSERT: Forstbetrieb fb darf nicht NULL sein!
+   
+    public String getName(){
+        return this.name;
+    }
+
+     //ASSERT: Forstbetrieb fb darf nicht NULL sein!
     public void addForstbetrieb(Forstbetrieb fb){
     	if (fb == null)
 			throw new IllegalArgumentException("Gemeinde, addForstbetrieb: Forstbetrieb fb darf nicht NULL sein!");
@@ -45,5 +50,9 @@ public class Gemeinde {
     //TODO!
     public String toString(){
         return "";
+    }
+
+    public int getForstbetriebCount(){
+        return this.forstbetrieb.size();
     }
 }
