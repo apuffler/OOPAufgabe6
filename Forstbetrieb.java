@@ -5,19 +5,28 @@ public class Forstbetrieb{
     private MyList ernter;
 
     public Forstbetrieb(String name){
+    	if (name == null)
+			throw new IllegalArgumentException("Forstbetrieb, Forstbetrieb: name darf nicht NULL sein!");
         this.fName = name;
         this.ernter = new MyList();
     }
 
+    //ASSERT: Holzvollernter hve darf nicht NULL sein!
     public void addErnter(Holzvollernter hve){
+    	if (hve == null)
+			throw new IllegalArgumentException("Holzvollernter, addErnter: Holzvollernter darf nicht NULL sein!");
         this.ernter.add(hve);
     }
 
+    //Possible assert?: id darf nicht < 0 sein?
     public void removeErnter(int id){
+
+
         Holzvollernter toBeRemoved = this.getErnter(id);
         ernter.remove(toBeRemoved);
-    }
 
+    }
+    //Possible assert?: id darf nicht < 0 sein?
     public Holzvollernter getErnter(int id){
     	Node currentNode = ernter.getHead();
     	while(currentNode != null){
@@ -35,6 +44,7 @@ public class Forstbetrieb{
     }
 
     public MyList getErnterList(){
+
         return this.ernter;
     }
 
@@ -237,11 +247,15 @@ public class Forstbetrieb{
         Node n = this.ernter.head;
         while (n != null){
             if(n instanceof Holzvollernter){
-                if(((Holzvollernter) n).getArbeitskopf() instanceof Schneiden){
+                if(((Holzvollernter) n).getArbeitskopf() instanceof Schneidkopf){
                     sumschneiden += ((Holzvollernter) n).getBetriebsstunden();
                     anzschneiden++;
+<<<<<<< Updated upstream
  
                 }else if(((Holzvollernter) n).getArbeitskopf() instanceof Schnitzeln){
+=======
+                }else if(((Holzvollernter) n).getArbeitskopf() instanceof Schnitzelkopf){
+>>>>>>> Stashed changes
                     sumschnitzeln += ((Holzvollernter) n).getBetriebsstunden();
                     anzshnitzln++;
                 }
@@ -251,6 +265,8 @@ public class Forstbetrieb{
         return "Durchschnittliche Betriebsstunden:\nGesamt: " + ((sumschneiden+sumschnitzeln)/(anzschneiden+anzshnitzln)) + "\nSchneider: "
                 + (sumschneiden/anzschneiden) + "\nSchnitzler: " + (sumschnitzeln/anzshnitzln);
     }
+
+
 
     public String getBetriebsstundenTyp(){
         double sums = 0, sumr = 0, anzs = 0, anzr = 0;
@@ -273,10 +289,10 @@ public class Forstbetrieb{
         Node n = this.ernter.head;
         while (n != null){
             if(n instanceof Radernter){
-                if(((Radernter) n).getArbeitskopf() instanceof Schneiden){
+                if(((Radernter) n).getArbeitskopf() instanceof Schneidkopf){
                     sumschneiden += ((Radernter) n).getWegstrecke();
                     anzschneiden++;
-                }else if(((Radernter) n).getArbeitskopf() instanceof Schnitzeln){
+                }else if(((Radernter) n).getArbeitskopf() instanceof Schnitzelkopf){
                     sumschnitzeln += ((Radernter) n).getWegstrecke();
                     anzshnitzln++;
                 }
@@ -292,10 +308,10 @@ public class Forstbetrieb{
         Node n = this.ernter.head;
         while (n != null){
             if(n instanceof Schreiter){
-                if(((Schreiter) n).getArbeitskopf() instanceof Schneiden){
+                if(((Schreiter) n).getArbeitskopf() instanceof Schneidkopf){
                     sumschneiden += ((Schreiter) n).getSchritte();
                     anzschneiden++;
-                }else if(((Schreiter) n).getArbeitskopf() instanceof Schnitzeln){
+                }else if(((Schreiter) n).getArbeitskopf() instanceof Schnitzelkopf){
                     sumschnitzeln += ((Schreiter) n).getSchritte();
                     anzshnitzln++;
                 }
@@ -311,7 +327,7 @@ public class Forstbetrieb{
         Node n = this.ernter.head;
         while (n != null){
             if(n instanceof Holzvollernter){
-                if(((Holzvollernter) n).getArbeitskopf() instanceof Schneiden) {
+                if(((Holzvollernter) n).getArbeitskopf() instanceof Schneidkopf) {
                     if (n instanceof Schreiter) {
                         smin = (smin < ((Schreiter) n).getArbeitskopfDetails()) ? smin : ((Schreiter) n).getArbeitskopfDetails();
                         smax = (smax > ((Schreiter) n).getArbeitskopfDetails()) ? smax : ((Schreiter) n).getArbeitskopfDetails();
@@ -332,7 +348,7 @@ public class Forstbetrieb{
         Node n = this.ernter.head;
         while (n != null){
             if(n instanceof Holzvollernter){
-                if(((Holzvollernter) n).getArbeitskopf() instanceof Schnitzeln) {
+                if(((Holzvollernter) n).getArbeitskopf() instanceof Schnitzelkopf) {
                     if (n instanceof Schreiter) {
                         sums += ((Schreiter) n).getArbeitskopfDetails();
                         anzs++;

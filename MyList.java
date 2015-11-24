@@ -11,13 +11,17 @@ public class MyList {
         this.size = 0;
     }
 
+
     public Node getHead(){
     	return this.head;
     }
 
+
+
     public void add (Object n){
     	if(n == null)
     		return;
+
         if(this.head == null){
             this.head = new Node(n);
             this.tail = new Node(n);
@@ -28,7 +32,12 @@ public class MyList {
         this.size++;
     }
 
+    
+    //ASSERT: Object n darf nicht NULL sein!
     public void remove(Object n){
+    	if (n == null)
+			throw new IllegalArgumentException("MyList, remove: Object n darf nicht NULL sein!");
+
     	if(this.head.getElement() == n){
     		if(this.head == null){
     			return;
