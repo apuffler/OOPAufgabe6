@@ -1,7 +1,7 @@
 /**
  *Arbeitsaufteilung: 
  *  Stefan Buttenhauser: 
- *  Armin Puffler:
+ *  Armin Puffler: Assertions für alle Klassen, Klassendiagramm (mit Hilfe der Kollegen), general Help
  *  Jovan Zivanovic: DoubleTriple.java, Test.java, SchnitzelSchneidTriple.java, SchrittRadTriple.java, MyList.java, Node.java
  *
  */
