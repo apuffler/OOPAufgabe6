@@ -38,7 +38,7 @@ public class Forstbetrieb{
         return this.ernter;
     }
 
-    public AverageBetriebsstundenByKopf getAverageBetriebsStundenByKopf(){
+    public SchnitzelSchneidTriple getAverageBetriebsStundenByKopf(){
         int schnitzelCounter = 0;
         int schneidCounter = 0;
 
@@ -66,10 +66,10 @@ public class Forstbetrieb{
         schnitzelBetriebsstunden /= schnitzelCounter;
         schneidBetriebsstunden /= schneidCounter;
 
-        return new AverageBetriebsstundenByKopf(allBetriebsstunden, schneidBetriebsstunden, schnitzelBetriebsstunden);
+        return new SchnitzelSchneidTriple(allBetriebsstunden, schnitzelBetriebsstunden, schneidBetriebsstunden);
     }
 
-    public AverageBetriebsstundenByArt getAverageBetriebsStundenByArt(){
+    public SchrittRadTriple getAverageBetriebsStundenByArt(){
         int schreiterCounter = 0;
         int radCounter = 0;
 
@@ -97,10 +97,10 @@ public class Forstbetrieb{
         schreiterBetriebsstunden /= schreiterCounter;
         radBetriebsstunden /= radCounter;
 
-        return new AverageBetriebsstundenByArt(allBetriebsstunden, schreiterBetriebsstunden, radBetriebsstunden);
+        return new SchrittRadTriple(allBetriebsstunden, schreiterBetriebsstunden, radBetriebsstunden);
     }
 
-    public AverageSpentDistanceByKopf getAverageSpentDistanceByKopf(){
+    public SchnitzelSchneidTriple getAverageSpentDistanceByKopf(){
         int schnitzelCounter = 0;
         int schneidCounter = 0;
         int radernterCounter = 0;
@@ -130,10 +130,10 @@ public class Forstbetrieb{
         schnitzelDistance /= schnitzelCounter;
         schneideDistance /= schneidCounter;
 
-        return new AverageSpentDistanceByKopf(totalDistance, schneideDistance, schnitzelDistance);
+        return new SchnitzelSchneidTriple(totalDistance, schnitzelDistance, schneideDistance);
     }
 
-    public AverageStepsByKopf getAverageStepsByKopf(){
+    public SchnitzelSchneidTriple getAverageStepsByKopf(){
         int schnitzelCounter = 0;
         int schneidCounter = 0;
         int schreiterCounter = 0;
@@ -163,10 +163,10 @@ public class Forstbetrieb{
         schnitzelSteps /= schnitzelCounter;
         schneideSteps /= schneidCounter;
 
-        return new AverageStepsByKopf(totalSteps, schneideSteps, schnitzelSteps);
+        return new SchnitzelSchneidTriple(totalSteps, schnitzelSteps, schneideSteps);
     }
 
-    public AverageTreeThicknessForSchnitzelkopf getAverageTreeThicknessForSchnitzelkopf(){
+    public SchrittRadTriple getAverageTreeThicknessForSchnitzelkopf(){
         int schnitzelCounter = 0;
         int radCounter = 0;
         int schreitCounter = 0;
@@ -196,10 +196,10 @@ public class Forstbetrieb{
         totalThickness /= schnitzelCounter;
         schreitThickness /= schreitCounter;
         radThickness /= radCounter;
-        return new AverageTreeThicknessForSchnitzelkopf(totalThickness, schreitThickness, radThickness);
+        return new SchrittRadTriple(totalThickness, schreitThickness, radThickness);
     }
     
-    public AverageTreeThicknessForSchneidkopf getAverageTreeThicknessForSchneidkopf(){
+    public SchrittRadTriple getAverageTreeThicknessForSchneidkopf(){
         int schneidCounter = 0;
         int radCounter = 0;
         int schreitCounter = 0;
@@ -229,7 +229,7 @@ public class Forstbetrieb{
         totalThickness /= schneidCounter;
         schreitThickness /= schreitCounter;
         radThickness /= radCounter;
-        return new AverageTreeThicknessForSchneidkopf(totalThickness, schreitThickness, radThickness);
+        return new SchrittRadTriple(totalThickness, schreitThickness, radThickness);
     }
 /*
     public String getBetriebsstundenEinsatz(){
