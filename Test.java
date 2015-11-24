@@ -2,7 +2,14 @@
 public class Test {
 
     public static void main(String[] args) {
-        Schreiter s = new Schreiter(0, new Schneiden(10.5), 0);
+    
+
+	}
+}
+
+
+
+    /*    Schreiter s = new Schreiter(0, new Schneiden(10.5), 0);
         Radernter r = new Radernter(0, new Schnitzeln(4), 0.5);
 
         s.incSchritte(50);
@@ -48,3 +55,4 @@ public class Test {
         System.out.println(fb.getWegstrecke());
     }
 }
+*/
