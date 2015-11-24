@@ -166,6 +166,71 @@ public class Forstbetrieb{
         return new AverageStepsByKopf(totalSteps, schneideSteps, schnitzelSteps);
     }
 
+    public AverageTreeThicknessForSchnitzelkopf getAverageTreeThicknessForSchnitzelkopf(){
+        int schnitzelCounter = 0;
+        int radCounter = 0;
+        int schreitCounter = 0;
+
+        float totalThickness = 0;
+        float radThickness = 0;
+        float schreitThickness = 0;
+
+        Node currentNode = ernter.getHead();
+        while(currentNode != null){
+            Holzvollernter h = (Holzvollernter)currentNode.getElement();
+            if(h.getArbeitskopf() instanceof Schnitzelkopf){
+                Schreiter s = (Schreiter)currentNode.getElement();
+                schnitzelCounter++;
+                totalThickness += h.getArbeitskopfDetails();
+                if(currentNode.getElement() instanceof Schreiter){
+                    schreitCounter++;
+                    schreitThickness += h.getArbeitskopfDetails();
+                }else if(currentNode.getElement() instanceof Radernter){
+                    radCounter++;
+                    radThickness += h.getArbeitskopfDetails();
+                }
+            }
+
+            currentNode = currentNode.getNext();
+        }
+        totalThickness /= schnitzelCounter;
+        schreitThickness /= schreitCounter;
+        radThickness /= radCounter;
+        return new AverageTreeThicknessForSchnitzelkopf(totalThickness, schreitThickness, radThickness);
+    }
+    
+    public AverageTreeThicknessForSchneidkopf getAverageTreeThicknessForSchneidkopf(){
+        int schneidCounter = 0;
+        int radCounter = 0;
+        int schreitCounter = 0;
+
+        float totalThickness = 0;
+        float radThickness = 0;
+        float schreitThickness = 0;
+
+        Node currentNode = ernter.getHead();
+        while(currentNode != null){
+            Holzvollernter h = (Holzvollernter)currentNode.getElement();
+            if(h.getArbeitskopf() instanceof Schneidkopf){
+                Schreiter s = (Schreiter)currentNode.getElement();
+                schneidCounter++;
+                totalThickness += h.getArbeitskopfDetails();
+                if(currentNode.getElement() instanceof Schreiter){
+                    schreitCounter++;
+                    schreitThickness += h.getArbeitskopfDetails();
+                }else if(currentNode.getElement() instanceof Radernter){
+                    radCounter++;
+                    radThickness += h.getArbeitskopfDetails();
+                }
+            }
+
+            currentNode = currentNode.getNext();
+        }
+        totalThickness /= schneidCounter;
+        schreitThickness /= schreitCounter;
+        radThickness /= radCounter;
+        return new AverageTreeThicknessForSchneidkopf(totalThickness, schreitThickness, radThickness);
+    }
 /*
     public String getBetriebsstundenEinsatz(){
         double sumschneiden = 0, sumschnitzeln = 0, anzschneiden = 0, anzshnitzln = 0;
